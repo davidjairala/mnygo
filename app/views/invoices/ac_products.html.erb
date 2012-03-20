@@ -1,0 +1,5 @@
+<% if @products %>
+  <% for product in @products %>
+    <%= product.full_name %>|BRK|<%= product.id %>|BRK|<%= product.price %>|BRK|<%= product.tax1 %>|BRK|<%= product.tax2 %>|BRK|<%= product.tax3 %>
+  <% end %>
+<% end %>

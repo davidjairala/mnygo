@@ -1,0 +1,33 @@
+<h1>Listing restocks</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Supplier</th>
+    <th>Quantity</th>
+    <th>When</th>
+    <th>Received</th>
+    <th>Comments</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @restocks.each do |restock| %>
+  <tr>
+    <td><%= restock.product_id %></td>
+    <td><%= restock.supplier_id %></td>
+    <td><%= restock.quantity %></td>
+    <td><%= restock.when %></td>
+    <td><%= restock.received %></td>
+    <td><%= restock.comments %></td>
+    <td><%= link_to 'Show', restock %></td>
+    <td><%= link_to 'Edit', edit_restock_path(restock) %></td>
+    <td><%= link_to 'Destroy', restock, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Restock', new_restock_path %>

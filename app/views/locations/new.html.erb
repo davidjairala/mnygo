@@ -1,0 +1,27 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Locations", "/companies/locations/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("locations_48.png", :class => "vmiddle") %>
+  New location
+</h1>
+
+<div class="<%= @locations_left_class %>">
+  You can create <%= @locations_left %> more locations.
+  <% if @locations_left_i <= 0 and @locations_left_i != -1000 %>
+    If you want to create more locations, please <%= link_to "select another package", "/pricing" %>.
+  <% end %>
+</div>
+
+<p>
+  To create a new location, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Back', "/companies/locations/#{@company.id}" %>
+</div>

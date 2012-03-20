@@ -1,0 +1,20 @@
+<% if @suppliers.count > 0 %>
+  <div class="suppliers">
+    <% for supplier in @suppliers %>
+      <div class="item">
+        <div class="title">
+          <%= link_to supplier.name, supplier %>
+        </div>
+        <div class="metadata">
+          <%= link_to "View", supplier %> &#183;
+          <%= link_to "Edit", edit_supplier_path(supplier) %> &#183;
+          <%= link_to 'Delete', supplier, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    We couldn't find any suppliers.
+  </p>
+<% end %>

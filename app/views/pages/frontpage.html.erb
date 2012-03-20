@@ -1,0 +1,103 @@
+<div class="info">
+  <div class="text">
+    <h3>
+      Sign up now!
+    </h3>
+
+    <p>
+      <%= link_to "Sign up", "/register" %> and start managing your sales with <strong><%= getAppName() %></strong>.
+    </p>
+
+    <h3>
+      Questions?
+    </h3>
+
+    <p>
+      Do you have any questions or comments?  <%= link_to "Contact us", "/contact" %>.
+    </p>
+
+    <h3>
+      Our clients
+    </h3>
+
+    <p>
+      You can read what <%= link_to "our clients", "/clients" %> are saying about us.
+    </p>
+  </div>
+</div>
+
+<% if @is_logged %>
+  <p class="big">
+    Welcome back <strong><%= @session_user.username %></strong>.  Go to <%= link_to "my dashboard", "/dashboard" %>.
+  </p>
+<% end %>
+
+<h3>
+  What is <%= getAppName() %>?
+</h3>
+
+<ul>
+  <li>
+    It's an easy to use <strong>Point of Sale</strong> Webapp
+  </li>
+  <li>
+    A simple way to manage your business' sales, clients, providers, products, services, etc
+  </li>
+  <li>
+    It provides a clear interface to view sales reports and analytics about your business
+  </li>
+  <li>
+    Manage your sales online, wherever you are, on any device
+  </li>
+  <li>
+    And <%= link_to "much more", "/features" %>
+  </li>
+</ul>
+
+<h3>
+  How can I start using it?
+</h3>
+
+<p>
+  You can start by reviewing our <%= link_to "pricing plans", "/pricing" %>.  We even have a <%= link_to "free plan", "/pricing/free" %> to get you started without paying a dime.
+</p>
+
+<p>
+  You will have to <%= link_to "sign up", "/register" %> with <strong><%= getAppName() %></strong>.  Sign up is free and won't take you more than a minute.
+</p>
+
+<p>
+  Once you have signed up and picked a pricing plan you can start creating your companies, locations, products, and everything you need to manage your sales easily.
+</p>
+
+<h3>
+  How much does it cost?
+</h3>
+
+<p>
+  We have several <%= link_to "pricing plans", "/pricing" %>, pick the one that best fits your needs.  We even have a <%= link_to "free plan", "/pricing/free" %> to get you started without paying a dime.  One thing is for sure, you'll be paying less than any other Point of Sale software out there, for a better product with zero installation and zero configuration.  Just sign up, pick a plan and start using it.
+</p>
+
+<h3>
+  What if I want to get all my information out of <%= getAppName() %>?
+</h3>
+
+<p>
+  We will never hold your data hostage.  We provide a simple process to export your data into a simple Excel file.
+</p>
+
+<h3>
+  Will my information be safe?
+</h3>
+
+<p>
+  We backup your data daily, and if anything should happen, we'll be right there to help you restore it.
+</p>
+
+<h3>
+  What about privacy?
+</h3>
+
+<p>
+  We don't share or sell your information.  Ever.  Not even your email address.
+</p>

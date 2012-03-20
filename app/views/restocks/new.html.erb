@@ -1,0 +1,17 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to @restock.product.name, @restock.product %> &raquo;
+  <%= link_to "Restock orders", "/companies/restocks/#{@company.id}/#{@restock.product.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("product_restock_48.png", :class => "vmiddle") %>
+  New restock order
+</h1>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Back', "/companies/restocks/#{@company.id}/#{@restock.product.id}" %>
+</div>

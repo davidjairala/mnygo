@@ -1,0 +1,162 @@
+<%= render 'layouts/charts' %>
+<%
+invoices_quantities = 0
+invoices_total = 0
+quantities = []
+totals = []
+%>
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Reports", "/companies/reports/#{@company.id}" %> &raquo;
+  <%= link_to "Monthly products reports", "/companies/reports/monthly_products/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("reports_48.png", :class => "vmiddle") %>
+  Monthly products report - <%= @product.name %> - <%= @month_name %> <%= @year %>
+</h1>
+
+<form method="get" action="/companies/reports/view_monthly_products/<%= @company.id %>/<%= @product.id %>">
+  <%= select_tag(:year, options_for_select(@years, @year)) %>
+  <%= select_tag(:month, options_for_select(@months, @month)) %>
+  <input type="submit" value="View report" class="small_btn" />
+  <a href="/companies/reports/view_monthly_products/<%= @company.id %>/<%= @product.id %>" class="small_btn">Today</a>
+</form>
+
+<br />
+
+<div id="container_chart" class="chart"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="bordered_bottom bordered_right" style="width: 70px;">
+        Date
+      </th>
+      <th class="bordered_bottom bordered_right" style="width: 100px;">
+        Quantity
+      </th>
+      <th class="bordered_bottom bordered_right" style="width: 100px;">
+        Total
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for date in @dates %>
+      <tr>
+        <td class="bordered_bottom bordered_right">
+          <%= doDate(Time.parse("#{date}-01"), 5) %>
+        </td>
+        <td class="bordered_bottom bordered_right right">
+          <%
+          quantity = @company.get_invoices_value_product_date(@product, date, "quantity")
+          quantities.push(quantity)
+          invoices_quantities += quantity
+          %>
+          <%= quantity %>
+        </td>
+        <td class="bordered_bottom bordered_right right">
+          <%
+          total = @company.get_invoices_value_product_date(@product, date, "total")
+          totals.push(total)
+          invoices_total += total
+          %>
+          $<%= money(total) %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="bordered_bottom bordered_right bold">
+        Total:
+      </td>
+      <td class="bordered_bottom bordered_right right bold">
+        $<%= invoices_quantities %>
+      </td>
+      <td class="bordered_bottom bordered_right right bold">
+        $<%= money(invoices_total) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<div class="button">
+  <%= link_to "Back", "/companies/reports/#{@company.id}" %>
+</div>
+
+<script type="text/javascript"> 
+$(document).ready(function() {
+	var chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_chart',
+			defaultSeriesType: 'line',
+			margin: [50, 40, 70, 70]
+		},
+		title: {
+			text: 'Monthly products report',
+			style: {
+				margin: '10px 100px 0 0' // center it
+			}
+		},
+		subtitle: {
+			text: '<%= @product.name %> - <%= @month_name %> <%= @year %>',
+			style: {
+				margin: '0 100px 0 0' // center it
+			}
+		},
+		xAxis: {
+			categories: [
+			  <%= @date_cats.join(",") %>
+			],
+			title: {
+				text: 'Month'
+			},
+			labels: {
+				rotation: -90, 
+				y: 34, 
+				style: {
+					fontSize: '8pt'
+				}
+			}
+		},
+		yAxis: {
+			title: {
+				text: 'Total'
+			},
+			plotLines: [{
+				value: 0,
+				width: 1,
+				color: '#808080'
+			}]
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.series.name +'</b><br/>'+
+				this.x +': '+ this.y;
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			style: {
+				left: 'auto',
+				bottom: 'auto',
+				right: '10px',
+				top: '100px'
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		series: [
+			{
+				name: 'Total',
+				data: [
+					<%= totals.join(",") %>
+				]
+			}
+		]
+	});
+});
+</script>

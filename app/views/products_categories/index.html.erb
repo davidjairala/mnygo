@@ -1,0 +1,14 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %>
+</div>
+
+<h1>
+  <%= image_tag("product_category_48.png", :class => "vmiddle") %>
+  Product categories
+</h1>
+
+<p>
+  Select one of your companies to view its product categories:
+</p>
+
+<%= render "companies/list_select" %>

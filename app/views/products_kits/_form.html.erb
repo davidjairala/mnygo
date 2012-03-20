@@ -1,0 +1,92 @@
+<div class="mid_box bordered_right">
+  <h3>
+    Kit Information
+  </h3>
+  
+  <%= form_for(@products_kit) do |f| %>
+    <% if @products_kit.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@products_kit.errors.count, "error") %> prohibited this products_kit from being saved:</h2>
+
+        <ul>
+        <% @products_kit.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
+    <div class="field" id="list_items">
+      <div class="bold big">Products:</div>
+    </div>
+    <div class="actions">
+      <%= f.hidden_field :company_id %>
+      <input type="hidden" name="items" id="items" value="<% if @products_ids %><%= @products_ids %><% end %>" />
+      <input type="hidden" name="items_quantities" id="items_quantities" value="<% if @products_quantities %><%= @products_quantities %><% end %>" />
+      <%= f.submit %>
+
+      <div class="small">
+        Once you're done adding products to your kit, don't forget to <strong><%= @action %></strong> your product kit.
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mid_box">
+  <br />
+  <h3>
+    Add Products to Kit
+  </h3>
+  
+  <form method="get" action="/products_kits" onsubmit="addItemToKit(); return false;">
+    <input type="hidden" name="ac_item_id" id="ac_item_id" value="" />
+    
+    <strong>Product:</strong><br />
+    <input type="text" name="ac_item" id="ac_item" value="" />
+    <div class="small">
+      Enter a search term to find a product.
+    </div>
+    <br />
+    
+    <strong>Quantity:</strong><br />
+    <input type="text" name="ac_item_quantity" id="ac_item_quantity" value="1" class="tf_short" />
+    <div class="small">
+      Quantity of the product to add to the kit.
+    </div>
+    
+    <br />
+    <input type="submit" value="Add product to kit" />
+  </form>
+</div>
+
+<%= br() %>
+<br />
+<%= hr() %>
+
+<%= render 'layouts/autocomplete' %>
+
+<script type="text/javascript"> 
+  $(document).ready(function() {
+    $("#ac_item").autocomplete("/invoices/ac_products/<%= @company.id %>", {
+			matchSubset: 1,
+			matchContains: 1,
+      selectFirst: false
+    });
+    
+    $("#ac_item").result(function(event, data, formatted) {
+      $("#ac_item_id").val(data[2]);
+    });
+    
+    <% if @products_ids %>
+      listItemsKit();
+    <% end %>
+  });
+</script>

@@ -1,0 +1,21 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %>
+</div>
+
+<h1>
+  <%= image_tag("product_category_48.png", :class => "vmiddle") %>
+  Product categories
+</h1>
+
+<%= render "products_categories/list" %>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Product Category', "/products_categories/new/#{@company.id}" %>
+</div>
+
+<br />
+
+<%= will_paginate @products_categories %>

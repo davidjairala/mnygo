@@ -1,0 +1,33 @@
+<h1>
+  Users_packages
+</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Package</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users_packages.each do |users_package| %>
+  <tr>
+    <td><%= users_package.user.print.html_safe %></td>
+    <td><%= users_package.package_id %></td>
+    <td><%= doDate(users_package.start_date, 3) %></td>
+    <td><%= doDate(users_package.end_date, 3) %></td>
+    <td><%= link_to 'Show', users_package %></td>
+    <td><%= link_to 'Edit', edit_users_package_path(users_package) %></td>
+    <td><%= link_to 'Destroy', users_package, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Users package', new_users_package_path %>
+</div>

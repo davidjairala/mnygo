@@ -1,0 +1,92 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @supplier.company.name, @supplier.company %> &raquo;
+  <%= link_to "Suppliers", "/companies/suppliers/#{@supplier.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("supplier_48.png", :class => "vmiddle") %>
+  <%= link_to "My suppliers", "/companies/suppliers/#{@supplier.company.id}" %>
+</h1>
+
+<p>
+  <b>Name:</b>
+  <%= @supplier.name %>
+</p>
+
+<% if @supplier.email != "" %>
+  <p>
+    <b>Email:</b>
+    <%= @supplier.email %>
+  </p>
+<% end %>
+
+<% if @supplier.phone1 != "" %>
+  <p>
+    <b>Phone1:</b>
+    <%= @supplier.phone1 %>
+  </p>
+<% end %>
+
+<% if @supplier.phone2 != "" %>
+  <p>
+    <b>Phone2:</b>
+    <%= @supplier.phone2 %>
+  </p>
+<% end %>
+
+<% if @supplier.address1 != "" %>
+  <p>
+    <b>Address1:</b>
+    <%= @supplier.address1 %>
+  </p>
+<% end %>
+
+<% if @supplier.address2 != "" %>
+  <p>
+    <b>Address2:</b>
+    <%= @supplier.address2 %>
+  </p>
+<% end %>
+
+<% if @supplier.city != "" %>
+  <p>
+    <b>City:</b>
+    <%= @supplier.city %>
+  </p>
+<% end %>
+
+<% if @supplier.state != "" %>
+  <p>
+    <b>State:</b>
+    <%= @supplier.state %>
+  </p>
+<% end %>
+
+<% if @supplier.zip != "" %>
+  <p>
+    <b>Zip:</b>
+    <%= @supplier.zip %>
+  </p>
+<% end %>
+
+<% if @supplier.country != "" %>
+  <p>
+    <b>Country:</b>
+    <%= @supplier.country %>
+  </p>
+<% end %>
+
+<% if @supplier.comments != "" %>
+  <p>
+    <b>Comments:</b>
+    <%= @supplier.comments %>
+  </p>
+<% end %>
+
+<div class="button">
+  <% if(@supplier.company.can_view(@session_user)) %>
+    <%= link_to 'Edit', edit_supplier_path(@supplier) %>
+  <% end %>
+  <%= link_to 'Back', "/companies/suppliers/#{@supplier.company.id}" %>
+</div>

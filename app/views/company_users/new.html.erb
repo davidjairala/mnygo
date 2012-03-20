@@ -1,0 +1,27 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Company users", "/companies/company_users/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("employees_48.png", :class => "vmiddle") %>
+  New company user
+</h1>
+
+<div class="<%= @users_left_class %>">
+  You can create <%= @users_left %> more users.
+  <% if @users_left_i <= 0 and @users_left_i != -1000 %>
+    If you want to create more users, please <%= link_to "select another package", "/pricing" %>.
+  <% end %>
+</div>
+
+<p>
+  To a new user to your company, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Back', "/companies/company_users/#{@company.id}" %>
+</div>

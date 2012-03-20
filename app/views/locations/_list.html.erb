@@ -1,0 +1,20 @@
+<% if @locations.count > 0 %>
+  <div class="locations">
+    <% for location in @locations %>
+      <div class="item">
+        <div class="title">
+          <%= link_to location.name, location %>
+        </div>
+        <div class="metadata">
+          <%= link_to "View", location %> &#183;
+          <%= link_to "Edit", edit_location_path(location) %> &#183;
+          <%= link_to 'Delete', location, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You don't have any locations yet.  You can <%= link_to "add one", "/locations/new/#{@company.id}" %>.
+  </p>
+<% end %>

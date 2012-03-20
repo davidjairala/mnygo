@@ -1,0 +1,18 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @supplier.company.name, @supplier.company %> &raquo;
+  <%= link_to "Suppliers", "/companies/suppliers/#{@supplier.company.id}" %> &raquo;
+  <%= link_to @supplier.name, @supplier %>
+</div>
+
+<h1>
+  <%= image_tag("supplier_48.png", :class => "vmiddle") %>
+  Editing supplier
+</h1>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Show', @supplier %>
+  <%= link_to 'Back', "/companies/suppliers/#{@supplier.company.id}" %>
+</div>

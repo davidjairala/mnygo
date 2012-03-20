@@ -1,0 +1,21 @@
+<% if @customers.count > 0 %>
+  <div class="customers">
+    <% for customer in @customers %>
+      <div class="item">
+        <div class="title">
+          <%= link_to customer.name, customer %>
+        </div>
+        <div class="metadata">
+          <%= link_to "Invoices for customer", "/companies/invoices/#{customer.company.id}?customer=#{customer.id}" %> &#183;
+          <%= link_to "View", customer %> &#183;
+          <%= link_to "Edit", edit_customer_path(customer) %> &#183;
+          <%= link_to 'Delete', customer, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    We couldn't find any customers.
+  </p>
+<% end %>

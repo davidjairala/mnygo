@@ -1,0 +1,19 @@
+<p>
+  <b>Title:</b>
+  <%= @page.title %>
+</p>
+
+<p>
+  <b>Title clean:</b>
+  <%= @page.title_clean %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= markdown(@page.content).html_safe %>
+</p>
+
+<div class="button">
+  <%= link_to 'Edit', edit_page_path(@page) %>
+  <%= link_to 'Back', pages_path %>
+</div>

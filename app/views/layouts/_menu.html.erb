@@ -1,0 +1,10 @@
+<div id="menu_cont">
+  <div id="menu">
+    <%= link_to 'Home', '/' %>
+    <%= link_to 'Dashboard', '/dashboard' %>
+    <% if(@is_logged) %>
+      <%= link_to 'My companies', '/companies' %>
+    <% end %>
+    <%= link_to 'Pricing', '/pricing' %>
+  </div>
+</div>

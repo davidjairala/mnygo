@@ -1,0 +1,20 @@
+<% if @products_kits.count > 0 %>
+  <div class="products">
+    <% for kit in @products_kits %>
+      <div class="item">
+        <div class="title">
+          <%= link_to kit.name, kit %>
+        </div>
+        <div class="metadata">
+          <%= link_to "View", kit %> &#183;
+          <%= link_to "Edit", edit_products_kit_path(kit) %> &#183;
+          <%= link_to 'Delete', kit, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You don't have any product kits yet.  You can <%= link_to "add one", "/products_kits/new/#{@company.id}" %>.
+  </p>
+<% end %>

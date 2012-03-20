@@ -1,0 +1,19 @@
+<% if @products_categories.count > 0 %>
+  <div class="products">
+    <% for category in @products_categories %>
+      <div class="item">
+        <div class="title">
+          <%= category.category %>
+        </div>
+        <div class="metadata">
+          <%= link_to "Edit", edit_products_category_path(category) %> &#183;
+          <%= link_to 'Delete', category, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You don't have any product categories yet.  You can <%= link_to "add one", "/products_categories/new/#{@company.id}" %>.
+  </p>
+<% end %>

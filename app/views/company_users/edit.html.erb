@@ -1,0 +1,21 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company_user.company.name, @company_user.company %> &raquo;
+  <%= link_to "Company userss", "/companies/company_users/#{@company_user.company.id}" %> &raquo;
+  <%= link_to @company_user.user.username, @company_user %>
+</div>
+
+<h1>
+  <%= image_tag("employees_48.png", :class => "vmiddle") %>
+  Edit company user
+</h1>
+
+<p>
+  To modify the company user, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Show', @company_user %>
+  <%= link_to 'Back', "/companies/company_users/#{@company_user.company.id}" %>
+</div>

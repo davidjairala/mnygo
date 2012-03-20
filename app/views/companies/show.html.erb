@@ -1,0 +1,219 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %>
+</div>
+
+<h1>
+  <%= image_tag("company_48.png", :class => "vmiddle") %>
+  <%= @company.name %>
+</h1>
+
+<%= hr() %>
+
+<div class="mid_box bordered_right">
+  <h3>
+    <%= image_tag("products_32.png", :class => "vmiddle") %>
+    <%= link_to "Products", "/companies/products/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete the products or services your company offers.
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("product_kit_32.png", :class => "vmiddle") %>
+    <%= link_to "Product kits", "/companies/products_kits/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete product kits (groups of products).
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("product_category_32.png", :class => "vmiddle") %>
+    <%= link_to "Product categories", "/companies/products_categories/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete the categories for your products.
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("invoice_32.png", :class => "vmiddle") %>
+    <%= link_to "Invoices", "/companies/invoices/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete invoices for your business.
+  </p>
+  
+  <%= hr() %>
+  
+  <h3>
+    <%= image_tag("employees_32.png", :class => "vmiddle") %>
+    <%= link_to "Users", "/companies/company_users/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete users that have access to your company.
+  </p>
+</div>
+
+<div class="mid_box">
+  <h3>
+    <%= image_tag("clients_32.png", :class => "vmiddle") %>
+    <%= link_to "Customers", "/companies/customers/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete customers for your business.
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("supplier_32.png", :class => "vmiddle") %>
+    <%= link_to "Suppliers", "/companies/suppliers/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete suppliers for your business.
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("locations_32.png", :class => "vmiddle") %>
+    <%= link_to "Locations", "/companies/locations/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete your company's locations, branches, offices or subsidiaries.
+  </p>
+
+  <%= hr() %>
+
+  <h3>
+    <%= image_tag("divisions_32.png", :class => "vmiddle") %>
+    <%= link_to "Divisions", "/companies/divisions/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete your company's divisions (tables, sections, etc).
+  </p>
+  
+  <%= hr() %>
+  
+  <h3>
+    <%= image_tag("reports_32.png", :class => "vmiddle") %>
+    <%= link_to "Reports", "/companies/reports/#{@company.id}" %>
+  </h3>
+
+  <p>
+    Add, edit or delete your company's divisions (tables, sections, etc).
+  </p>
+</div>
+
+<%= br() %>
+<%= hr() %>
+
+<% if @company.logo %>
+  <div class="company_logo">
+    <img src="<%= img_name_size(@company.logo, 200) %>" alt="Logo" />
+  </div>
+<% end %>
+
+<h3>
+  Company info
+</h3>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @company.user.print.html_safe %>
+</p>
+
+<% if @company.address1 != "" %>
+  <p>
+    <b>Address1:</b>
+    <%= @company.address1 %>
+  </p>
+<% end %>
+
+<% if @company.address2 != "" %>
+  <p>
+    <b>Address2:</b>
+    <%= @company.address2 %>
+  </p>
+<% end %>
+
+<% if @company.city != "" %>
+  <p>
+    <b>City:</b>
+    <%= @company.city %>
+  </p>
+<% end %>
+
+<% if @company.state != "" %>
+  <p>
+    <b>State:</b>
+    <%= @company.state %>
+  </p>
+<% end %>
+
+<% if @company.zip != "" %>
+  <p>
+    <b>Zip:</b>
+    <%= @company.zip %>
+  </p>
+<% end %>
+
+<% if @company.country != "" %>
+  <p>
+    <b>Country:</b>
+    <%= @company.country %>
+  </p>
+<% end %>
+
+<% if @company.website != "" and @company.website != "http://" %>
+  <p>
+    <b>Website:</b>
+    <%= @company.website %>
+  </p>
+<% end %>
+
+<% if @company.phone1 != "" %>
+  <p>
+    <b>Phone1:</b>
+    <%= @company.phone1 %>
+  </p>
+<% end %>
+
+<% if @company.phone2 != "" %>
+  <p>
+    <b>Phone2:</b>
+    <%= @company.phone2 %>
+  </p>
+<% end %>
+
+<% if @company.email != "" %>
+  <p>
+    <b>Email:</b>
+    <%= @company.email %>
+  </p>
+<% end %>
+
+<%= br() %>
+
+<div class="button">
+  <% if @company.own(@session_user) %>
+    <%= link_to 'Edit', edit_company_path(@company) %>
+    <%= link_to 'Export data to Excel', "/companies/export/#{@company.id}.csv" %>
+  <% end %>
+
+  <%= link_to 'Back', companies_path %>
+</div>

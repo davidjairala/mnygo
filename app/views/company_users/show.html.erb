@@ -1,0 +1,24 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company_user.company.name, @company_user.company %> &raquo;
+  <%= link_to "Company users", "/companies/company_users/#{@company_user.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("employees_48.png", :class => "vmiddle") %>
+  <%= @company_user.user.username %>
+</h1>
+
+<p>
+  <b>Company:</b>
+  <%= link_to @company_user.company.name, @company_user.company %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= link_to @company_user.user.username, @company_user.user %>
+</p>
+
+<div class="button">
+  <%= link_to 'Back', "/companies/company_users/#{@company_user.company.id}" %>
+</div>

@@ -1,0 +1,22 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Locations", "/companies/locations/#{@company.id}" %> &raquo;
+  <%= link_to @location.name, @location %>
+</div>
+
+<h1>
+  <%= image_tag("locations_48.png", :class => "vmiddle") %>
+  Edit location
+</h1>
+
+<p>
+  To modify the location, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Show', @location %>
+  <%= link_to 'Back', "/companies/locations/#{@company.id}" %>
+</div>

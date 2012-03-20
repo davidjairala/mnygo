@@ -1,0 +1,23 @@
+<% if @company_users.count > 0 %>
+  <div class="company_users">
+    <% for company_user in @company_users %>
+      <div class="item">
+        <div class="title">
+          <%= link_to company_user.user.username, company_user %>
+        </div>
+        <div class="metadata">
+          <%= link_to "View", company_user %> &#183;
+          <% if(@company.user_id != company_user.user_id) %>
+            <%= link_to 'Delete', company_user, :confirm => 'Are you sure?', :method => :delete %>
+          <% else %>
+            <abbr class="linethrough" title="You cannot delete the company creator">Delete</abbr>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You don't have any users for your company yet.  You can <%= link_to "add one", "/company_users/new/#{@company.id}" %>.
+  </p>
+<% end %>

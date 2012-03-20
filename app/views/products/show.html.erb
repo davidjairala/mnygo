@@ -1,0 +1,145 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @product.company.name, @product.company %> &raquo;
+  <%= link_to "Products", "/companies/products/#{@product.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("products_48.png", :class => "vmiddle") %>
+  <%= @product.name %>
+</h1>
+
+<% if @product.code != "" %>
+  <div>
+    <b>Code:</b>
+    <%= @product.code %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.category != "" %>
+  <div>
+    <b>Category:</b>
+    <%= @product.category %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.supplier and @product.supplier_id != "" %>
+  <div>
+    <b>Supplier:</b>
+    <%= link_to @product.supplier.name, @product.supplier %>
+  </div>
+  <br />
+<% end %>
+
+<%= hr() %>
+<br />
+
+<div>
+  <b>Cost:</b>
+  $<%= money(@product.cost) %>
+</div>
+<br />
+
+<div>
+  <b>Price:</b>
+  $<%= money(@product.price) %>
+</div>
+<br />
+
+<div>
+  <abbr title="Profit = Price - Cost" class="bold">Profit:</abbr>
+  $<%= money(@product.profit) %>
+</div>
+<br />
+
+<% if @product.tax1 and @product.tax1 > 0 %>
+  <div>
+    <b>Tax 1:</b>
+    <%= @product.tax1_name %> &#183;
+    <%= money(@product.tax1) %>%
+  </div>
+  <br />
+<% end %>
+
+<% if @product.tax2 and @product.tax2 > 0 %>
+  <div>
+    <b>Tax 2:</b>
+    <%= @product.tax2_name %> &#183;
+    <%= money(@product.tax2) %>%
+  </div>
+  <br />
+<% end %>
+
+<% if @product.tax3 and @product.tax3 > 0 %>
+  <div>
+    <b>Tax 3:</b>
+    <%= @product.tax3_name %> &#183;
+    <%= money(@product.tax3) %>%
+  </div>
+  <br />
+<% end %>
+
+<div>
+  <abbr title="Total = Price + Tax 1 + Tax 2 + Tax 3" class="bold">Total:</abbr>
+  $<%= money(@product.total) %>
+</div>
+
+<br />
+<%= hr() %>
+<br />
+
+<% if @product.quantity %>
+  <div>
+    <b>Quantity:</b>
+    <%= @product.quantity %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.reorder %>
+  <div>
+    <b>Reorder:</b>
+    <%= @product.reorder %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.description != "" %>
+  <%= hr() %>
+  <br />
+  
+  <div>
+    <b>Description:</b>
+  </div>
+  <div>
+    <%= format(@product.description) %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.comments != "" %>
+  <%= hr() %>
+  <br />
+  
+  <div>
+    <b>Comments:</b>
+  </div>
+  <div>
+    <%= format(@product.comments) %>
+  </div>
+  <br />
+<% end %>
+
+<% if @product.comments != "" or @product.description != "" %>
+  <%= hr() %>
+  <br />
+<% end %>
+
+<div class="button">
+  <%= link_to "Restock product", "/restocks/new/#{@product.company.id}/#{@product.id}" %>
+  <%= link_to "View restock orders for product", "/companies/restocks/#{@product.company.id}/#{@product.id}" %>
+  <%= link_to 'Edit', edit_product_path(@product) %>
+  <%= link_to 'Back', "/companies/products/#{@product.company.id}" %>
+</div>

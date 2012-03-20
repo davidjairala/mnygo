@@ -1,0 +1,26 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Reports", "/companies/reports/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("reports_48.png", :class => "vmiddle") %>
+  Monthly customers report - <%= @month_name %> <%= @year %>
+</h1>
+
+<p class="big">
+  Select the customer to view his/her monthly sales report:
+</p>
+
+<% for customer in @customers %>
+  <p>
+    <%= link_to customer.name, "/companies/reports/view_monthly_customers/#{@company.id}/#{customer.id}" %>
+  </p>
+<% end %>
+
+<br />
+
+<div class="button">
+  <%= link_to "Back", "/companies/reports/#{@company.id}" %>
+</div>

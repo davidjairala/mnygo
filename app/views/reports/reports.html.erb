@@ -1,0 +1,99 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %>
+</div>
+
+<h1>
+  <%= image_tag("reports_48.png", :class => "vmiddle") %>
+  Reports
+</h1>
+
+<div class="mid_box bordered_right">
+  <h3>
+    Profits, costs and taxes
+  </h3>
+  
+  <p class="big">
+    <%= link_to "Yearly profits, costs and taxes", "/companies/reports/profits/#{@company.id}" %>
+  </p>
+  
+  <p class="big">
+    <%= link_to "Monthly profits, costs and taxes", "/companies/reports/monthly_profits/#{@company.id}" %>
+  </p>
+  
+  <h3>
+    Sales
+  </h3>
+  
+  <p class="big">
+    <%= link_to "Yearly sales", "/companies/reports/sales/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly sales", "/companies/reports/monthly_sales/#{@company.id}" %>
+  </p>
+
+  <h3>
+    Sellers
+  </h3>
+
+  <p class="big">
+    <%= link_to "Yearly sellers", "/companies/reports/sellers/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly sellers", "/companies/reports/monthly_sellers/#{@company.id}" %>
+  </p>
+
+  <h3>
+    Products
+  </h3>
+
+  <p class="big">
+    <%= link_to "Yearly products", "/companies/reports/products/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly products", "/companies/reports/monthly_products/#{@company.id}" %>
+  </p>
+</div>
+
+<div class="mid_box">
+  <h3>
+    Customers
+  </h3>
+
+  <p class="big">
+    <%= link_to "Yearly customers", "/companies/reports/customers/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly customers", "/companies/reports/monthly_customers/#{@company.id}" %>
+  </p>
+
+  <h3>
+    Locations
+  </h3>
+
+  <p class="big">
+    <%= link_to "Yearly locations", "/companies/reports/locations/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly locations", "/companies/reports/monthly_locations/#{@company.id}" %>
+  </p>
+  
+  <h3>
+    Divisions
+  </h3>
+
+  <p class="big">
+    <%= link_to "Yearly divisions", "/companies/reports/divisions/#{@company.id}" %>
+  </p>
+
+  <p class="big">
+    <%= link_to "Monthly divisions", "/companies/reports/monthly_divisions/#{@company.id}" %>
+  </p>
+</div>
+
+<%= br() %>

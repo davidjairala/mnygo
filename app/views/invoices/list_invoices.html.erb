@@ -1,0 +1,89 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %>
+</div>
+
+<h1>
+  <%= image_tag("invoice_48.png", :class => "vmiddle") %>
+  Invoices
+  <% if @customer %>
+    for customer: <%= @customer.name %>
+  <% end %>
+</h1>
+
+<div>
+  <a href="#" onclick="toggle('filters'); return false;">Filters</a>
+</div>
+
+<div id="filters" class="filters" style="display: <%= @filters_display %>;">
+  <div>
+    <div class="small">
+      <form method="get" action="/companies/invoices/<%= @company.id %>">
+        <strong>Search:</strong>
+        <input type="text" name="q" value="<% if @q_org %><%= @q_org %><% end %>" class="small" style="width: 250px;" onclick="$(this).select();" />
+        <input type="submit" value="Find" class="bold small_btn" />
+      </form>
+    </div>
+  </div>
+
+  <div>
+    <form method="get" action="/companies/invoices/<%= @company.id %>">
+      <div class="small">
+        <strong>Location:</strong>
+        <select name="location" class="small">
+          <option value=""></option>
+          <% for location in @locations %>
+            <option value="<%= location.id %>" <% if(@sel_location.to_i == location.id) %>selected="selected"<% end %>><%= location.name %></option>
+          <% end %>
+        </select>
+    
+        <strong>Division:</strong>
+        <select name="division" class="small">
+          <option value=""></option>
+          <% for division in @divisions %>
+            <option value="<%= division.id %>" <% if(@sel_division.to_i == division.id) %>selected="selected"<% end %>><%= division.name %></option>
+          <% end %>
+        </select>
+    
+        <input type="submit" value="Filter" class="bold small_btn" />
+      </div>
+    </form>
+  </div>
+  
+  <div>
+    <form method="get" action="/companies/invoices/<%= @company.id %>">
+      <div class="small">
+        <strong>Customer:</strong>
+        <input type="text" name="ac_customer" id="ac_customer" value="<% if @customer %><%= @customer.name %><% end %>" class="small" style="width: 235px;" />
+        <input type="submit" value="Find" class="bold small_btn" />
+      </div>
+    </form>
+  </div>
+  
+  <div class="button">
+    <a href="/companies/invoices/<%= @company.id %>" class="small_btn">Clear filters</a>
+  </div>
+</div>
+
+<br />
+<%= render "invoices/list" %>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Invoice', "/invoices/new/#{@company.id}" %>
+</div>
+
+<%= will_paginate @invoices %>
+
+<%= render 'layouts/autocomplete' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#ac_customer").autocomplete("/invoices/ac_customers/<%= @company.id %>", {
+			matchSubset: 1,
+			matchContains: 1,
+      selectFirst: false
+    });
+  });
+</script>

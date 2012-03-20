@@ -1,0 +1,59 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @products_kit.company.name, @products_kit.company %> &raquo;
+  <%= link_to "Product kits", "/companies/products_kits/#{@products_kit.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("product_kit_48.png", :class => "vmiddle") %>
+  <%= @products_kit.name %>
+</h1>
+
+<% if @products_kit.description != "" %>
+  <p>
+    <b>Description:</b>
+    <%= @products_kit.description %>
+  </p>
+<% end %>
+
+<% if @products_kit.products %>
+  <%= hr() %>
+  <div class="products">
+    <h4>
+      Products in kit:
+    </h4>
+    
+    <% for product in @products_kit.products %>
+      <div class="item">
+        <div class="title">
+          <%= link_to product.name, product %> x
+          <%= product.quantity %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <%= hr() %>
+<% end %>
+
+<p>
+  <b>Cost:</b>
+  $<%= money(@products_kit.cost) %>
+</p>
+
+<p>
+  <b>Price:</b>
+  $<%= money(@products_kit.price) %>
+</p>
+
+<p>
+  <b>Profit:</b>
+  $<%= money(@products_kit.profit) %>
+</p>
+
+<%= hr() %>
+
+<div class="button">
+  <%= link_to 'Edit', edit_products_kit_path(@products_kit) %>
+  <%= link_to 'Back', "/companies/products_kits/#{@products_kit.company.id}" %>
+</div>

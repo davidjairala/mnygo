@@ -1,0 +1,26 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Reports", "/companies/reports/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("reports_48.png", :class => "vmiddle") %>
+  Monthly products report - <%= @month_name %> <%= @year %>
+</h1>
+
+<p class="big">
+  Select the product to view its monthly sales report:
+</p>
+
+<% for product in @products %>
+  <p>
+    <%= link_to product.full_name, "/companies/reports/view_monthly_products/#{@company.id}/#{product.id}" %>
+  </p>
+<% end %>
+
+<br />
+
+<div class="button">
+  <%= link_to "Back", "/companies/reports/#{@company.id}" %>
+</div>

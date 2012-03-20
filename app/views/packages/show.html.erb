@@ -1,0 +1,40 @@
+<p>
+  <b>Title:</b>
+  <%= @package.title %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @package.slug %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @package.price %>
+</p>
+
+<div>
+  <b>Description:</b>
+  <br />
+  <%= markdown(@package.description).html_safe %>
+</div>
+
+<p>
+  <b>Companies:</b>
+  <%= @package.companies %>
+</p>
+
+<p>
+  <b>Locations:</b>
+  <%= @package.locations %>
+</p>
+
+<p>
+  <b>Users:</b>
+  <%= @package.users %>
+</p>
+
+<div class="button">
+  <%= link_to 'Edit', edit_package_path(@package) %>
+  <%= link_to 'Back', packages_path %>
+</div>

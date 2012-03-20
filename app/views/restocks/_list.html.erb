@@ -1,0 +1,50 @@
+<% if @restocks.count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th class="bordered_right bordered_bottom" style="width: 300px;">
+          Code
+        </th>
+        <th class="bordered_right bordered_bottom" style="width: 200px;">
+          Supplier
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Quantity
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Date
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Options
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for restock in @restocks %>
+        <tr>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to restock.code, restock, :title => "Go to restock" %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to restock.supplier.name, restock.supplier, :title => "Go to supplier" %>
+          </td>
+          <td class="bordered_right bordered_bottom right">
+            <%= restock.quantity %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= doDate(restock.when) %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to "View", restock %> &#183;
+            <%= link_to "Edit", edit_restock_path(restock) %> &#183;
+            <%= link_to 'Delete', restock, :confirm => 'Are you sure?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="error">
+    You don't have any restock orders yet.  You can <%= link_to "add one", "/restocks/new/#{@company.id}/#{@product.id}" %>.
+  </p>
+<% end %>

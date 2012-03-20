@@ -1,0 +1,5 @@
+<% if @products %>
+  <% for product in @products %>
+    <%= product.full_name %>|BRK|<%= product.id %>
+  <% end %>
+<% end %>

@@ -1,0 +1,49 @@
+<p class="bold big">
+  Products:
+</p>
+
+<% if @products %>
+  <table>
+    <thead>
+      <tr>
+        <th class="small bordered_bottom bordered_right">
+          Product
+        </th>
+        <th class="small bordered_bottom bordered_right">
+          Price
+        </th>
+        <th class="small bordered_bottom bordered_right">
+          Quantity
+        </th>
+        <th class="small bordered_bottom bordered_right">
+          Discount
+        </th>
+        <th class="small bordered_bottom bordered_right">
+          Total
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for product in @products %>
+        <tr>
+          <td class="small bordered_bottom bordered_right" style="width: 220px;">
+            <a href="#" onclick="removeItemFromInvoice(<%= product.i %>); return false;" title="Remove product from invoice"><%= product.full_name %></a>
+            [<a href="#" onclick="removeItemFromInvoice(<%= product.i %>); return false;" title="Remove product from invoice">X</a>]
+          </td>
+          <td class="small bordered_bottom bordered_right">
+            $<%= money(product.price) %>
+          </td>
+          <td class="small bordered_bottom bordered_right">
+            <%= product.quantity %>
+          </td>
+          <td class="small bordered_bottom bordered_right">
+            <%= money(product.discount) %>%
+          </td>
+          <td class="small bordered_bottom bordered_right">
+            $<%= money(product.curr_total) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

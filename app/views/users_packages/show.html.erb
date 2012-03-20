@@ -1,0 +1,24 @@
+<p>
+  <b>User:</b>
+  <%= @users_package.user.print.html_safe %>
+</p>
+
+<p>
+  <b>Package:</b>
+  <%= @users_package.package_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= doDate(@users_package.start_date, 3) %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= doDate(@users_package.end_date, 3) %>
+</p>
+
+<div class="button">
+  <%= link_to 'Edit', edit_users_package_path(@users_package) %>
+  <%= link_to 'Back', users_packages_path %>
+</div>

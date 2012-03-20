@@ -1,0 +1,48 @@
+<%= form_for(@company_user) do |f| %>
+  <% if @company_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company_user.errors.count, "error") %> prohibited this company_user from being saved:</h2>
+
+      <ul>
+      <% @company_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <label for="ac_user" class="bold">User*</label><br />
+    <input type="text" name="ac_user" id="ac_user" value="" />
+    <div class="small">
+      Search for an user using his/her username or email to add it to your company.
+    </div>
+    <br />
+    <div>
+      <strong>Selected user:</strong>
+      <span id="curr_selected_user"><!-- i --></span>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :company_id %>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= render 'layouts/autocomplete' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#ac_user").autocomplete("/company_users/ac_users", {
+			matchSubset: 1,
+			matchContains: 1,
+      selectFirst: false
+    });
+    
+    $("#ac_user").result(function(event, data, formatted) {
+      $("#company_user_user_id").val(data[2]);
+      $("#curr_selected_user").html(data[0]);
+    });
+  });
+</script>

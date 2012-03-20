@@ -1,0 +1,28 @@
+<% if not @ajax %>
+  <div class="breadcrumbs">
+    <%= link_to "My companies", "/companies" %> &raquo;
+    <%= link_to @company.name, @company %> &raquo;
+    <%= link_to "Customers", "/companies/customers/#{@company.id}" %>
+  </div>
+
+  <h1>
+    <%= image_tag("clients_48.png", :class => "vmiddle") %>
+    New customer
+  </h1>
+  
+  <p>
+    To create a new customer, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+  </p>
+<% else %>
+  <h4>
+    New customer
+  </h4>
+<% end %>
+
+<%= render 'form' %>
+
+<% if not @ajax %>
+  <div class="button">
+    <%= link_to 'Back', "/companies/customers/#{@company.id}" %>
+  </div>
+<% end %>

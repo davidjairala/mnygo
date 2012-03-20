@@ -1,0 +1,190 @@
+<%= render 'layouts/charts' %>
+<%
+invoices_subtotal = 0
+invoices_tax = 0
+invoices_total = 0
+subtotals = []
+taxes = []
+totals = []
+%>
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Reports", "/companies/reports/#{@company.id}" %> &raquo;
+  <%= link_to "Monthly locations reports", "/companies/reports/monthly_locations/#{@company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("reports_48.png", :class => "vmiddle") %>
+  Monthly locations report - <%= @location.name %> - <%= @month_name %> <%= @year %>
+</h1>
+
+<form method="get" action="/companies/reports/view_monthly_locations/<%= @company.id %>/<%= @location.id %>">
+  <%= select_tag(:year, options_for_select(@years, @year)) %>
+  <%= select_tag(:month, options_for_select(@months, @month)) %>
+  <input type="submit" value="View report" class="small_btn" />
+  <a href="/companies/reports/view_monthly_locations/<%= @company.id %>/<%= @location.id %>" class="small_btn">Today</a>
+</form>
+
+<br />
+
+<div id="container_chart" class="chart"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="bordered_bottom bordered_right" style="width: 70px;">
+        Date
+      </th>
+      <th class="bordered_bottom bordered_right" style="width: 100px;">
+        Subtotal
+      </th>
+      <th class="bordered_bottom bordered_right" style="width: 100px;">
+        Tax
+      </th>
+      <th class="bordered_bottom bordered_right" style="width: 100px;">
+        Total
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for date in @dates %>
+      <tr>
+        <td class="bordered_bottom bordered_right">
+          <%= doDate(Time.parse("#{date}-01"), 5) %>
+        </td>
+        <td class="bordered_bottom bordered_right right">
+          <%
+          subtotal = @company.get_invoices_value_location_date(@location, date, "subtotal")
+          subtotals.push(subtotal)
+          invoices_subtotal += subtotal
+          %>
+          $<%= money(subtotal) %>
+        </td>
+        <td class="bordered_bottom bordered_right right">
+          <%
+            tax = @company.get_invoices_value_location_date(@location, date, "tax")
+          taxes.push(tax)
+          invoices_tax += tax
+          %>
+          $<%= money(tax) %>
+        </td>
+        <td class="bordered_bottom bordered_right right">
+          <%
+          total = @company.get_invoices_value_location_date(@location, date, "total")
+          totals.push(total)
+          invoices_total += total
+          %>
+          $<%= money(total) %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="bordered_bottom bordered_right bold">
+        Total:
+      </td>
+      <td class="bordered_bottom bordered_right right bold">
+        $<%= money(invoices_subtotal) %>
+      </td>
+      <td class="bordered_bottom bordered_right right bold">
+        $<%= money(invoices_tax) %>
+      </td>
+      <td class="bordered_bottom bordered_right right bold">
+        $<%= money(invoices_total) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<div class="button">
+  <%= link_to "Back", "/companies/reports/#{@company.id}" %>
+</div>
+
+<script type="text/javascript"> 
+$(document).ready(function() {
+	var chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container_chart',
+			defaultSeriesType: 'line',
+			margin: [50, 40, 70, 70]
+		},
+		title: {
+			text: 'Monthly locations report',
+			style: {
+				margin: '10px 100px 0 0' // center it
+			}
+		},
+		subtitle: {
+			text: '<%= @location.name %> - <%= @month_name %> <%= @year %>',
+			style: {
+				margin: '0 100px 0 0' // center it
+			}
+		},
+		xAxis: {
+			categories: [
+			  <%= @date_cats.join(",") %>
+			],
+			title: {
+				text: 'Month'
+			},
+			labels: {
+				rotation: -90, 
+				y: 34, 
+				style: {
+					fontSize: '8pt'
+				}
+			}
+		},
+		yAxis: {
+			title: {
+				text: 'Sales'
+			},
+			plotLines: [{
+				value: 0,
+				width: 1,
+				color: '#808080'
+			}]
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.series.name +'</b><br/>'+
+				this.x +': '+ this.y;
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			style: {
+				left: 'auto',
+				bottom: 'auto',
+				right: '10px',
+				top: '100px'
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		series: [
+			{
+				name: 'Subtotal',
+				data: [
+					<%= subtotals.join(",") %>
+				]
+			},
+			{
+				name: 'Tax',
+				data: [
+					<%= taxes.join(",") %>
+				]
+			},
+			{
+				name: 'Total',
+				data: [
+					<%= totals.join(",") %>
+				]
+			}
+		]
+	});
+});
+</script>

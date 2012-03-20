@@ -1,0 +1,39 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %>
+  <% if @view_restock %>
+    &raquo;
+    <%= link_to "Products", "/companies/products/#{@company.id}" %>
+  <% end %>
+</div>
+
+<h1>
+  <%= image_tag("products_48.png", :class => "vmiddle") %>
+  <% if not @view_restock %>
+    Products
+  <% else %>
+    Products that need restocking
+  <% end %>
+</h1>
+
+<div class="small">
+  <form method="get" action="/companies/products/<%= @company.id %>">
+    <strong>Search:</strong>
+    <input type="text" name="q" value="<% if @q_org %><%= @q_org %><% end %>" class="small" onclick="$(this).select();" />
+    <input type="submit" value="Find" class="bold small_btn" />
+    <a href="/companies/products/<%= @company.id %>" class="small_btn">Clear</a>
+  </form>
+</div>
+
+<%= render "products/list" %>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Product', "/products/new/#{@company.id}" %>
+  <%= link_to 'Which Products Need Restocking?', "/companies/products/#{@company.id}?restock=1" %>
+</div>
+
+<br />
+
+<%= will_paginate @products %>

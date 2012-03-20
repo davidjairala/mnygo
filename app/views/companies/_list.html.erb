@@ -1,0 +1,32 @@
+<p>
+  Select a company to add products, create invoices, process orders, etc.
+</p>
+
+<% if @companies.count > 0 %>
+  <div class="companies">
+    <% for company in @companies %>
+      <div class="item">
+        <div class="title">
+          <%= link_to company.name, company %>
+        </div>
+        <div class="metadata">
+          <%= link_to "View", company %>
+          <% if(company.own(@session_user)) %>
+            &#183;
+            <%= link_to "Edit", edit_company_path(company) %> &#183;
+            <%= link_to "Delete", company, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </div>
+        <%= br() %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You have not yet created any companies.  You can <%= link_to "create one", "/companies/new" %> now.
+  </p>
+<% end %>
+
+<div class="button">
+  <%= link_to "New company", "/companies/new" %>
+</div>

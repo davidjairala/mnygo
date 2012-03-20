@@ -1,0 +1,56 @@
+<h1>
+  Sign Up
+</h1>
+
+<p>
+  To sign up with <%= getAppName() %>, please fill up the following form.  All fields are required.
+</p>
+
+<%= form_for(@user, :url => {:action => "register"}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= @user.errors.count %>
+        <%= I18n.translate "error", :count => @user.errors.count %>:
+      </h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :username, "Username*", :class => "bold" %><br />
+    <%= f.text_field :username %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :first_name, "First name*", :class => "bold" %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :last_name, "Last name*", :class => "bold" %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email, "Email*", :class => "bold" %><br />
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password, "Password*", :class => "bold" %><br />
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="actions">
+    <% if @next %>
+      <input type="hidden" name="next" value="<%= @next %>" />
+    <% end %>
+    <%= f.submit 'Sign up', :class => 'bold' %>
+  </div>
+<% end -%>

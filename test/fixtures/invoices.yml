@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company_id: 1
+  location_id: 1
+  division_id: 1
+  customer_id: 1
+  description: MyText
+  comments: MyText
+  code: MyString
+  subtotal: 
+  tax: 
+  total: 
+  processed: MyString
+
+two:
+  company_id: 1
+  location_id: 1
+  division_id: 1
+  customer_id: 1
+  description: MyText
+  comments: MyText
+  code: MyString
+  subtotal: 
+  tax: 
+  total: 
+  processed: MyString

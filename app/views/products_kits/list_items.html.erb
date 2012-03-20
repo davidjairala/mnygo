@@ -1,0 +1,10 @@
+<div class="bold big">Items:</div>
+<% if @products %>
+  <% for product in @products %>
+    <%= product.full_name %> &#183;
+    Quantity: 
+    <%= product.quantity %>
+    [<a href="#" onclick="removeItemFromKit(<%= product.id %>); return false;">remove</a>]
+    <br />
+  <% end %>
+<% end %>

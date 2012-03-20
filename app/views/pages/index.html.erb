@@ -1,0 +1,29 @@
+<h1>
+  Pages
+</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Title clean</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%= page.title %></td>
+    <td><%= page.title_clean %></td>
+    <td><%= link_to 'Show', page %></td>
+    <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Page', new_page_path %>
+</div>

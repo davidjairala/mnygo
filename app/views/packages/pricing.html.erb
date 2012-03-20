@@ -1,0 +1,30 @@
+<h1>
+  Pricing
+</h1>
+
+<% for package in @packages %>
+  <div class="package">
+    <div class="title">
+      <%= package.title %>
+    </div>
+    <div class="price">
+      $<%= money(package.price) %>/year
+    </div>
+    <div class="description">
+      <%= markdown(package.description).html_safe %>
+    </div>
+    <div class="button">
+      <%= link_to 'Choose package', '/pricing/' + package.slug %>
+    </div>
+  </div>
+<% end %>
+
+<%= br() %>
+
+<h1>
+  Questions?
+</h1>
+
+<p>
+  Do you have any questions before signing up?  Please <%= link_to "contact us", "/contact" %> and we'll get back to you as soon as possible to clear any doubts you may have.
+</p>

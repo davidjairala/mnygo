@@ -1,0 +1,62 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @restock.company.name, @restock.company %> &raquo;
+  <%= link_to @restock.product.name, @restock.product %> &raquo;
+  <%= link_to "Restock orders", "/companies/restocks/#{@restock.company.id}/#{@restock.product.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("product_restock_48.png", :class => "vmiddle") %>
+  Restock orders
+</h1>
+
+<p>
+  <b>Product:</b>
+  <%= link_to @restock.product.name, @restock.product %>
+</p>
+
+<p>
+  <b>Supplier:</b>
+  <%= link_to @restock.supplier.name, @restock.supplier %>
+</p>
+
+<% if @restock.code and @restock.code != "" %>
+  <p>
+    <strong>Code:</strong>
+    <%= @restock.code %>
+  </p>
+<% end %>
+
+<p>
+  <b>Quantity:</b>
+  <%= @restock.quantity %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= doDate(@restock.when) %>
+</p>
+
+<p>
+  <b>Processed:</b>
+  <%= @restock.get_processed_str %>
+</p>
+
+<% if @restock.comments and @restock.comments != "" %>
+  <%= hr() %>
+
+  <div>
+    <b>Comments:</b>
+    <br />
+    <br />
+    <%= format(@restock.comments) %>
+  </div>
+<% end %>
+
+<%= hr() %>
+
+<div class="button">
+  <%= link_to 'Process restock order', "/restocks/process/#{@restock.id}" %>
+  <%= link_to 'Edit', edit_restock_path(@restock) %>
+  <%= link_to 'Back', "/companies/restocks/#{@restock.company.id}/#{@restock.product.id}" %>
+</div>

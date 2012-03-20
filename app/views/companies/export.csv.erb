@@ -1,0 +1,90 @@
+============================================================
+Company information
+============================================================
+id,name,address1,address2,city,state,zip,country,website,phone1,phone2,email,created_at,updated_at
+<%= "#{@company.id.format_csv},#{@company.name.format_csv},#{@company.address1.format_csv},#{@company.address2.format_csv},#{@company.city.format_csv},#{@company.state.format_csv},#{@company.zip.format_csv
+},#{@company.country.format_csv},#{@company.website.format_csv},#{@company.phone1.format_csv},#{@company.phone2.format_csv},#{@company.email.format_csv},#{@company.created_at.format_csv},#{@company.updated_at.format_csv}" %>
+
+============================================================
+Customers
+============================================================
+id,name,email,phone1,phone2,address1,address2,city,state,zip,country,comments,account,taxable,created_at,updated_at
+<% for customer in @customers %>
+<%= "#{customer.id.format_csv},#{customer.name.format_csv},#{customer.email.format_csv},#{customer.phone1.format_csv},#{customer.phone2.format_csv},#{customer.address1.format_csv},#{customer.address2.format_csv},#{customer.city.format_csv},#{customer.state.format_csv},#{customer.zip.format_csv},#{customer.country.format_csv},#{customer.comments.format_csv},#{customer.account.format_csv},#{customer.taxable.format_csv},#{customer.created_at.format_csv},#{customer.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Locations
+============================================================
+id,name,address1,address2,city,state,zip,country,website,phone1,phone2,email,created_at,updated_at
+<% for location in @locations %>
+<%= "#{location.id.format_csv},#{location.name.format_csv},#{location.address1.format_csv},#{location.address2.format_csv},#{location.city.format_csv},#{location.state.format_csv},#{location.zip.format_csv},#{location.country.format_csv},#{location.website.format_csv},#{location.phone1.format_csv},#{location.phone2.format_csv},#{location.email.format_csv},#{location.created_at.format_csv},#{location.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Divisions
+============================================================
+id,location_id,name,description,created_at,updated_at
+<% for division in @divisions %>
+<%= "#{division.id.format_csv},#{division.location_id.format_csv},#{division.name.format_csv},#{division.description.format_csv},#{customer.created_at.format_csv},#{customer.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Product categories
+============================================================
+id,category,created_at,updated_at
+<% for category in @products_categories %>
+<%= "#{category.id.format_csv},#{category.category.format_csv},#{customer.created_at.format_csv},#{customer.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Suppliers
+============================================================
+id,name,email,phone1,phone2,address1,address2,city,state,zip,country,comments,created_at,updated_at
+<% for supplier in @suppliers %>
+<%= "#{supplier.id.format_csv},#{supplier.name.format_csv},#{supplier.email.format_csv},#{supplier.phone1.format_csv},#{supplier.phone2.format_csv},#{supplier.address1.format_csv},#{supplier.address2.format_csv},#{supplier.city.format_csv},#{supplier.state.format_csv},#{supplier.zip.format_csv},#{supplier.country.format_csv},#{supplier.comments.format_csv},#{supplier.created_at.format_csv},#{supplier.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Product kits
+============================================================
+id,name,description,created_at,updated_at
+<% for kit in @products_kits %>
+<%= "#{kit.id.format_csv},#{kit.name.format_csv},#{kit.description.format_csv},#{kit.created_at.format_csv},#{kit.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Products in product kits
+============================================================
+id,product_kit_id,product_id,quantity,created_at,updated_at
+<% for kit in @products_kits %>
+<% for kp in kit.get_kits_products() %>
+<%= "#{kp.id.format_csv},#{kp.product_kit_id.format_csv},#{kp.product_id.format_csv},#{kp.quantity.format_csv},#{kp.created_at.format_csv},#{kit.updated_at.format_csv}" %>
+<% end %>
+<% end %>
+
+============================================================
+Users
+============================================================
+id,username,email,first_name,last_name,created_at,updated_at
+<% for company_user in @company_users %>
+<%= "#{company_user.user.id.format_csv},#{company_user.user.username.format_csv},#{company_user.user.email.format_csv},#{company_user.user.first_name.format_csv},#{company_user.user.last_name.format_csv},#{company_user.user.created_at.format_csv},#{company_user.user.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Invoices
+============================================================
+id,location_id,division_id,customer_id,description,comments,code,subtotal,tax,total,processed,return,date_processed,user_id,created_at,updated_at
+<% for invoice in @invoices %>
+<%= "#{invoice.id.format_csv},#{invoice.location_id.format_csv},#{invoice.division_id.format_csv},#{invoice.customer_id.format_csv},#{invoice.description.format_csv},#{invoice.comments.format_csv},#{invoice.code.format_csv},#{invoice.subtotal.format_csv},#{invoice.tax.format_csv},#{invoice.total.format_csv},#{invoice.processed.format_csv},#{invoice.return.format_csv},#{invoice.date_processed.format_csv},#{invoice.user_id.format_csv},#{invoice.created_at.format_csv},#{invoice.updated_at.format_csv}" %>
+<% end %>
+
+============================================================
+Invoice products
+============================================================
+id,invoice_id,product_id,price,quantity,discount,total,created_at,updated_at
+<% for invoice in @invoices %>
+<% for ip in invoice.get_invoice_products %>
+<%= "#{ip.id.format_csv},#{ip.invoice_id.format_csv},#{ip.product_id.format_csv},#{ip.price.format_csv},#{ip.quantity.format_csv},#{ip.discount.format_csv},#{ip.total.format_csv},#{ip.created_at.format_csv},#{ip.updated_at.format_csv}," %>
+<% end %>
+<% end %>

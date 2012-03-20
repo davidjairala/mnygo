@@ -1,0 +1,45 @@
+<h1>
+  Dashboard
+</h1>
+
+<%= hr() %>
+
+<h2>
+  My current plan
+</h2>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @user_package.package.title %>
+  <% if @user_package.package.slug != 'free' %>
+    <br />
+    <strong>Start date:</strong>
+    <%= doDate(@user_package.start_date, 3) %>
+    <br />
+    <strong>End date:</strong>
+    <%= doDate(@user_package.end_date, 3) %>
+  <% end %>
+</p>
+
+<% if @next_package %>
+  <h3>
+    Upgrade your plan!
+  </h3>
+  
+  <p>
+    <%= link_to "Upgrade your plan now", "/pricing" %> and take advantage of all the benefits of our bigger offerings.
+  </p>
+  
+  <div class="button">
+    <%= link_to "Upgrade plan", "/pricing" %>
+  </div>
+<% end %>
+
+<%= hr() %>
+
+<h2>
+  <%= image_tag("company_48.png", :class => "vmiddle") %>
+  <%= link_to "My companies", "/companies" %>
+</h2>
+
+<%= render 'companies/list' %>

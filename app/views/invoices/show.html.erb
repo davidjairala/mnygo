@@ -1,0 +1,174 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @invoice.company.name, @invoice.company %> &raquo;
+  <%= link_to "Invoices", "/companies/invoices/#{@invoice.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("invoice_48.png", :class => "vmiddle") %>
+  <%= @invoice.identifier %>
+</h1>
+
+<%= hr() %>
+
+<% if @invoice.location %>
+  <p>
+    <b>Location:</b>
+    <%= link_to @invoice.location.name, @invoice.location %>
+  </p>
+<% end %>
+
+<% if @invoice.division %>
+  <p>
+    <b>Division:</b>
+    <%= link_to @invoice.division.name, @invoice.division %>
+  </p>
+<% end %>
+
+<p>
+  <b>Code:</b>
+  <%= @invoice.code %>
+</p>
+
+<%= hr() %>
+
+<h3>
+  Customer information
+</h3>
+
+<p>
+  <b>Name:</b>
+  <%= link_to @customer.name, @customer %>
+</p>
+
+<%= render "customers/show" %>
+
+<%= hr() %>
+
+<h3>
+  Details
+</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Product
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Discount
+      </th>
+      <th>
+        Total
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for product in @invoice.get_products() %>
+      <tr>
+        <td class="bordered_bottom bordered_right">
+          <%= link_to product.full_name, product %>
+        </td>
+        <td class="bordered_bottom bordered_right">
+          $<%= money(product.curr_price) %>
+        </td>
+        <td class="bordered_bottom bordered_right">
+          <%= product.curr_quantity %>
+        </td>
+        <td class="bordered_bottom bordered_right">
+          <%= money(product.curr_discount) %>%
+        </td>
+        <td class="bordered_bottom bordered_right">
+          $<%= money(product.curr_total) %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="5" class="bordered_bottom bordered_right">
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bordered_bottom bordered_right bold">
+        Subtotal:
+      </td>
+      <td class="bordered_bottom bordered_right bold right">
+        $<%= money(@invoice.subtotal) %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bordered_bottom bordered_right bold">
+        Tax:
+      </td>
+      <td class="bordered_bottom bordered_right bold right">
+        $<%= money(@invoice.tax) %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bordered_bottom bordered_right bold">
+        Total:
+      </td>
+      <td class="bordered_bottom bordered_right bold right">
+        $<%= money(@invoice.total) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<%= hr() %>
+
+<% if @invoice.description != "" %>
+  <div>
+    <b>Description:</b>
+    <br />
+    <br />
+    <%= format(@invoice.description) %>
+  </div>
+  <%= hr() %>
+<% end %>
+
+<% if @invoice.comments != "" %>
+  <div>
+    <b>Comments:</b>
+    <br />
+    <br />
+    <%= format(@invoice.comments) %>
+  </div>
+  <%= hr() %>
+<% end %>
+
+<br />
+
+<div>
+  <strong><%= @invoice.get_processed %></strong>
+  <% if @invoice.processed == "1" and @invoice.date_processed %>
+    <%= doDate(@invoice.date_processed) %>
+  <% end %>
+</div>
+
+<p>
+  <b>Return:</b>
+  <%= @invoice.get_return %>
+</p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= link_to @invoice.user.username, @invoice.user %>
+</p>
+
+<%= hr() %>
+
+<div class="button">
+  <%= link_to 'Export to PDF', "/invoices/pdf/#{@invoice.id}.pdf" %>
+  <%= link_to 'Send invoice via email', "/invoices/email/#{@invoice.id}" %>
+  <%= link_to 'Process invoice', "/invoices/do_process/#{@invoice.id}" %>
+  <%= link_to 'Edit', edit_invoice_path(@invoice) %>
+  <%= link_to 'Back', "/companies/invoices/#{@invoice.company.id}" %>
+</div>

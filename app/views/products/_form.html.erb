@@ -1,0 +1,162 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= hr() %>
+  
+  <div class="field">
+    <strong>Product information</strong>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, "Product name*", :class => "bold" %><br />
+    <%= f.text_field :name %>
+    <div class="small">
+      The name of the product.
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :code, "Product code (UPC/EAN/ISBN)" %><br />
+    <%= f.text_field :code %>
+    <div class="small">
+      If your product has a unique code, for example ISBN, enter it here.
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+    <div class="small">
+      You can group products together using categories.
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :cost, "Cost*", :class => "bold" %><br />
+    <%= f.text_field :cost %>
+    <div class="small">
+      How much does the product cost you?  If it doesn't cost you anything, you<br />
+      can enter the number 0.
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :price, "Price*", :class => "bold" %><br />
+    <%= f.text_field :price %>
+    <div class="small">
+      The price of the product.
+    </div>
+  </div>
+  
+  <%= hr() %>
+  
+  <div class="field">
+    <strong>Taxes</strong>
+    <div class="small">
+      Optional fields regarding the product taxing.
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :tax1_name, "Tax 1 name:" %>
+    <%= f.text_field :tax1_name, :class => "tf_short" %>
+    <%= f.label :tax1, "Tax 1 %" %>
+    <%= f.text_field :tax1, :class => "tf_short" %>
+    <div class="small">
+      Usually the sales tax.  For example: "Sales tax" : "7"<br />
+      Enter the percentage of the tax without the "%" sign.
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :tax2_name, "Tax 2 name:" %>
+    <%= f.text_field :tax2_name, :class => "tf_short" %>
+    <%= f.label :tax2, "Tax 2 %" %>
+    <%= f.text_field :tax2, :class => "tf_short" %>
+    <div class="small">
+      Additional taxes your product may have.
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :tax3_name, "Tax 3 name:" %>
+    <%= f.text_field :tax3_name, :class => "tf_short" %>
+    <%= f.label :tax3, "Tax 3 %" %>
+    <%= f.text_field :tax3, :class => "tf_short" %>
+    <div class="small">
+      Additional taxes your product may have.
+    </div>
+  </div>
+  
+  <%= hr() %>
+  
+  <div class="field">
+    <strong>Inventory</strong>
+  </div>
+  
+  <div class="field">
+    <%= f.label :supplier_id %><br />
+    <%= f.select :supplier_id, @suppliers %>
+    <div class="small">
+      Who supplies you the product.
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+    <div class="small">
+      What quantity of the product do you have in inventory?
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :reorder %><br />
+    <%= f.text_field :reorder %>
+    <div class="small">
+      <%= getAppName() %> will let you know as soon as the quantity of the product reaches<br />
+      the reorder point, so you can order more products.
+    </div>
+  </div>
+  
+  <%= hr() %>
+  
+  <div class="field">
+    <strong>Additional information</strong>
+  </div>
+  
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </div>
+  
+  <%= hr() %>
+  
+  <div class="actions">
+    <%= f.hidden_field :company_id %>
+    <%= f.submit %>
+  </div>
+  
+  <%= render 'layouts/autocomplete' %>
+  
+  <script type="text/javascript"> 
+    $(document).ready(function() {
+      $("#product_category").autocomplete("/products/ac_categories/<%= @company.id %>", {
+        width: 300,
+        selectFirst: false
+      });
+    });
+  </script>
+<% end %>

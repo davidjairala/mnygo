@@ -1,0 +1,18 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @customer.company.name, @customer.company %> &raquo;
+  <%= link_to "Customers", "/companies/customers/#{@customer.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("clients_48.png", :class => "vmiddle") %>
+  <%= @customer.name %>
+</h1>
+
+<%= render "customers/show" %>
+
+<div class="button">
+  <%= link_to "Invoices for customer", "/companies/invoices/#{@customer.company.id}?customer=#{@customer.id}" %>
+  <%= link_to 'Edit', edit_customer_path(@customer) %>
+  <%= link_to 'Back', "/companies/customers/#{@customer.company.id}" %>
+</div>

@@ -1,0 +1,15 @@
+<% if @companies %>
+  <div class="companies">
+    <% for company in @companies %>
+      <div class="item">
+        <div class="title">
+          <%= link_to company.name, "/companies/#{@path}/#{company.id}" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="error">
+    You have not yet created any companies.  You can <%= link_to "create one", "/companies/new" %> now.
+  </p>
+<% end %>

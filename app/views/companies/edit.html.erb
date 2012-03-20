@@ -1,0 +1,19 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %>
+</div>
+
+<h1>
+  <%= image_tag("company_48.png", :class => "vmiddle") %>
+  Edit company
+</h1>
+
+<p>
+  To create modify a company, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'View', @company %>
+  <%= link_to 'Back', companies_path %>
+</div>

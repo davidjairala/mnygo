@@ -1,0 +1,60 @@
+<% if @invoices.count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th class="bordered_right bordered_bottom" style="width: 100px;">
+          Invoice
+        </th>
+        <th class="bordered_right bordered_bottom" style="width: 350px;">
+          Customer
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Total
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Date
+        </th>
+        <th class="bordered_right bordered_bottom">
+          Processed
+        </th>
+        <th class="bordered_right bordered_bottom" colspan="3">
+          Options
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for invoice in @invoices %>
+        <tr>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to invoice.code, invoice, :title => "Go to invoice" %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to invoice.customer.name, invoice.customer, :title => "Go to customer" %>
+          </td>
+          <td class="bordered_right bordered_bottom right">
+            $<%= money(invoice.total) %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= doDate(invoice.created_at) %>
+          </td>
+          <td class="bordered_right bordered_bottom <%= invoice.processed_color %>">
+            <%= invoice.get_processed_short %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to "View", invoice %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to "Edit", edit_invoice_path(invoice) %>
+          </td>
+          <td class="bordered_right bordered_bottom">
+            <%= link_to 'Delete', invoice, :confirm => 'Are you sure?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="error">
+    We couldn't find any invoices.
+  </p>
+<% end %>

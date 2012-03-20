@@ -1,0 +1,23 @@
+<h1>
+  Sessions
+</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sessions.each do |session| %>
+  <tr>
+    <td><%= link_to session.user.username, "/users/#{session.user_id}" %></td>
+    <td><%= link_to 'Show', session %></td>
+    <td><%= link_to 'Destroy', session, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= will_paginate @sessions %>

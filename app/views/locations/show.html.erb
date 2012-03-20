@@ -1,0 +1,85 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @location.company.name, @location.company %> &raquo;
+  <%= link_to "Locations", "/companies/locations/#{@location.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("locations_48.png", :class => "vmiddle") %>
+  <%= @location.name %>
+</h1>
+
+<% if @location.address1 != "" %>
+  <p>
+    <b>Address1:</b>
+    <%= @location.address1 %>
+  </p>
+<% end %>
+
+<% if @location.address2 != "" %>
+  <p>
+    <b>Address2:</b>
+    <%= @location.address2 %>
+  </p>
+<% end %>
+
+<% if @location.city != "" %>
+  <p>
+    <b>City:</b>
+    <%= @location.city %>
+  </p>
+<% end %>
+
+<% if @location.state != "" %>
+  <p>
+    <b>State:</b>
+    <%= @location.state %>
+  </p>
+<% end %>
+
+<% if @location.zip != "" %>
+  <p>
+    <b>Zip:</b>
+    <%= @location.zip %>
+  </p>
+<% end %>
+
+<% if @location.country != "" %>
+  <p>
+    <b>Country:</b>
+    <%= @location.country %>
+  </p>
+<% end %>
+
+<% if @location.website != "" and @location.website != "http://" %>
+  <p>
+    <b>Website:</b>
+    <%= @location.website %>
+  </p>
+<% end %>
+
+<% if @location.phone1 != "" %>
+  <p>
+    <b>Phone1:</b>
+    <%= @location.phone1 %>
+  </p>
+<% end %>
+
+<% if @location.phone2 != "" %>
+  <p>
+    <b>Phone2:</b>
+    <%= @location.phone2 %>
+  </p>
+<% end %>
+
+<% if @location.email != "" %>
+  <p>
+    <b>Email:</b>
+    <%= @location.email %>
+  </p>
+<% end %>
+
+<div class="button">
+  <%= link_to 'Edit', edit_location_path(@location) %>
+  <%= link_to 'Back', "/companies/locations/#{@location.company.id}" %>
+</div>

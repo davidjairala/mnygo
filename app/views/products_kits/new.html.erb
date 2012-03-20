@@ -1,0 +1,15 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Product kits", "/companies/products_kits/#{@company.id}" %>
+</div>
+
+<h1>
+  New Product kit
+</h1>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Back', "/companies/products_kits/#{@company.id}" %>
+</div>

@@ -1,0 +1,32 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Invoices", "/companies/invoices/#{@company.id}" %> &raquo;
+  <%= link_to @invoice.identifier, @invoice %>
+</div>
+
+<h1>
+  <%= image_tag("invoice_48.png", :class => "vmiddle") %>
+  Send invoice via email
+</h1>
+
+<%= hr() %>
+
+<h3>
+  <%= link_to @invoice.identifier, @invoice %>
+</h3>
+
+<%= hr() %>
+
+<form method="post" action="/invoices/do_email/<%= @invoice.id %>">
+  <strong>Email:</strong>
+  <input type="text" name="email" value="<%= @invoice.customer.email %>" onclick="$(this).select();" />
+  <input type="submit" value="Send" class="bold" />
+</form>
+
+<%= hr() %>
+
+<div class="button">
+  <%= link_to 'Show invoice', @invoice %>
+  <%= link_to 'Back', "/companies/invoices/#{@company.id}" %>
+</div>

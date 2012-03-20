@@ -1,0 +1,11 @@
+<h3>
+	Subir imagen
+</h3>
+
+<% form_for(@image, :url => { :controller => 'pages', :action => 'quick_upload'}, :html => {:multipart => true, :target => 'ires'}) do |f| %>
+  <div>
+    <%= f.label 'Selecciona imagen a subir' %><br />
+    <%= f.file_field 'imagen' %> 
+	<%= f.submit 'Subir' %>
+  </div>
+<% end %>

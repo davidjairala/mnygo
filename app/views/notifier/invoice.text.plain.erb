@@ -1,0 +1,102 @@
+Hello <%= @to %>,
+
+<%= @invoice.company.name %> has sent you the following invoice:
+
+Invoice: <%= @invoice.code %>
+
+<% if @invoice.location %>
+Location: <%= @invoice.location.name %>
+<% end %>
+
+<% if @invoice.division %>
+Division: <%= @invoice.division.name %>
+<% end %>
+
+<% if @invoice.customer %>
+====================================
+Customer
+====================================
+
+Name: <%= @invoice.customer.name %>
+<% if @invoice.customer.code %>
+Code: <%= @invoice.customer.code %>
+<% end %>
+<% if @invoice.customer.email %>
+Email: <%= @invoice.customer.email %>
+<% end %>
+<% if @invoice.customer.phone1 %>
+Phone 1: <%= @invoice.customer.phone1 %>
+<% end %>
+<% if @invoice.customer.phone2 %>
+Phone 2: <%= @invoice.customer.phone2 %>
+<% end %>
+<% if @invoice.customer.address1 %>
+Address 1: <%= @invoice.customer.address1 %>
+<% end %>
+<% if @invoice.customer.address2 %>
+Address 2: <%= @invoice.customer.address2 %>
+<% end %>
+<% if @invoice.customer.city %>
+City: <%= @invoice.customer.city %>
+<% end %>
+<% if @invoice.customer.state %>
+State: <%= @invoice.customer.state %>
+<% end %>
+<% if @invoice.customer.zip %>
+ZIP: <%= @invoice.customer.zip %>
+<% end %>
+<% if @invoice.customer.country %>
+Country: <%= @invoice.customer.country %>
+<% end %>
+<% if @customer.comments != "" %>
+
+Comments:
+<%= @invoice.customer.comments %>
+<% end %>
+
+<%= @customer.get_taxable %>
+
+Created: <%= doDate(@invoice.created_at) %>
+<% end %>
+
+====================================
+Details
+====================================
+
+<% for product in @invoice.get_products() %>
+<%= product.full_name %> -
+Price: $<%= money(product.curr_price) %> -
+Quantity: <%= product.curr_quantity %> -
+Discount: <%= money(product.curr_discount) %>% -
+Total: $<%= money(product.curr_total) %>
+<% end %>
+
+====================================
+
+Subtotal: $<%= money(@invoice.subtotal) %>
+Tax: $<%= money(@invoice.tax) %>
+Total: $<%= money(@invoice.total) %>
+
+====================================
+
+<% if @invoice.description != "" %>
+Description:
+
+<%= @invoice.description %>
+
+====================================
+<% end %>
+
+<% if @invoice.comments != "" %>
+Comments:
+
+<%= format(@invoice.comments) %>
+
+====================================
+<% end %>
+
+Processed:
+<%= @invoice.get_processed %>
+
+Return:
+<%= @invoice.get_return %>

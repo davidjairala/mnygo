@@ -1,0 +1,22 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to "Customers", "/companies/customers/#{@company.id}" %>
+  <%= link_to @customer.name, @customer %>
+</div>
+
+<h1>
+  <%= image_tag("clients_48.png", :class => "vmiddle") %>
+  Editing customer
+</h1>
+
+<p>
+  To modify the customer, please fill out the following form.  Fields marked with <strong>*</strong> are required.
+</p>
+
+<%= render 'form' %>
+
+<div class="button">
+  <%= link_to 'Show', @customer %>
+  <%= link_to 'Back', "/companies/customers/#{@company.id}" %>
+</div>

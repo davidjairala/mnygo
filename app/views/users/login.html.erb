@@ -1,0 +1,28 @@
+<div class="info big">
+  &iquest;Don't have an account? <a href="/register<% if(@next) %>?next=<%= @next %><% end %>">Sign up</a>, it's free and won't take you more than a minute.
+</div>
+
+<h1>
+  Login
+</h1>
+
+<%= form_tag('/login') do %>
+  <p>
+    <strong>Username:</strong>
+    <br />
+    <input type="text" name="user[username]" value="" />
+  </p>
+
+  <p>
+    <strong>Password:</strong>
+    <br />
+    <input type="password" name="user[password]" value="" />
+  </p>
+
+  <p>
+    <% if @next %>
+      <input type="hidden" name="next" value="<%= @next %>" />
+    <% end %>
+    <input type="submit" value="Login" class="bold" />
+  </p>
+<% end -%>

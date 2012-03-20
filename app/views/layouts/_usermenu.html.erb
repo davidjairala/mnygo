@@ -1,0 +1,76 @@
+<%
+if(isLogged())
+  companies = getUser().get_companies()
+end
+%>
+<div id="usermenu">
+  <% if @is_logged %>
+    <strong><%= @session_user.print.html_safe %></strong>:
+    <%= link_to 'home', '/' %> &#183;
+    <% if(companies and companies.count > 0) %>
+      <%= link_to 'Companies <img src="/images/arrow_down_8.png" alt="" />'.html_safe, "/companies", :class => "dropdown", :id => "dropdown_companies" %> &#183;
+      <div id="menu_companies" class="dropdown_menu">
+        <div>
+          <%= link_to "View companies", "/companies" %>
+        </div>
+        <% for company in companies %>
+          <div>
+            <%= link_to company.name, company %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if(session_company = get_session_company()) %>
+      <%= link_to (session_company.name + ' <img src="/images/arrow_down_8.png" alt="" />').html_safe, session_company, :class => "dropdown", :id => "dropdown_company" %> &#183;
+      <div id="menu_company" class="dropdown_menu">
+        <div>
+          <%= link_to "View company", session_company %>
+        </div>
+        <div>
+          <%= link_to "Products", "/companies/products/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Customers", "/companies/customers/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Product kits", "/companies/products_kits/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Suppliers", "/companies/suppliers/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Product categories", "/companies/products_categories/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Locations", "/companies/locations/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Invoices", "/companies/invoices/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Divisions", "/companies/divisions/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Users", "/companies/company_users/#{session_company.id}" %>
+        </div>
+        <div>
+          <%= link_to "Reports", "/companies/reports/#{session_company.id}" %>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to 'logout', '/logout' %>
+  <% else %>
+    <%= link_to 'register'.html_safe, '/register' %> &#183;
+    <%= link_to 'login', '/login' %>
+  <% end -%>
+  <% if @is_admin %>
+    [
+      <strong>admin</strong>:
+      <%= link_to 'users', '/users' %> &#183;
+      <%= link_to 'sessions', '/sessions' %> &#183;
+      <%= link_to 'pages', '/pages' %> &#183;
+      <%= link_to 'packages', '/packages' %> &#183;
+      <%= link_to 'users packages', '/users_packages' %>
+    ]
+  <% end -%>
+</div>

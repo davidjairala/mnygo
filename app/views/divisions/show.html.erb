@@ -1,0 +1,34 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @division.company.name, @division.company %> &raquo;
+  <%= link_to "Divisions", "/companies/divisions/#{@division.company.id}" %>
+</div>
+
+<h1>
+  <%= image_tag("divisions_48.png", :class => "vmiddle") %>
+  <%= @division.name %>
+</h1>
+
+<% if @division.location_id %>
+  <p>
+    <b>Location:</b>
+    <%= link_to @division.location.name, @division.location %>
+  </p>
+<% end %>
+
+<p>
+  <b>Name:</b>
+  <%= @division.name %>
+</p>
+
+<% if @division.description != "" %>
+  <p>
+    <b>Description:</b>
+    <%= @division.description %>
+  </p>
+<% end %>
+
+<div class="button">
+  <%= link_to 'Edit', edit_division_path(@division) %>
+  <%= link_to 'Back', "/companies/divisions/#{@division.company.id}" %>
+</div>

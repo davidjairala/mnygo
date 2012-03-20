@@ -1,0 +1,52 @@
+<%= form_for(@restock) do |f| %>
+  <% if @restock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restock.errors.count, "error") %> prohibited this restock from being saved:</h2>
+
+      <ul>
+      <% @restock.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :product_id, "Product*", :class => "bold" %><br />
+    <%= link_to @restock.product.name, @restock.product %>
+  </div>
+  <div class="field">
+    <%= f.label :supplier_id, "Supplier*", :class => "bold" %><br />
+    <%= f.select :supplier_id, @suppliers %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity, "Quantity*", :class => "bold" %><br />
+    <%= f.text_field :quantity, :class => "tf_short" %>
+  </div>
+  <div class="field">
+    <%= f.label :code, "Restock order number or code" %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :when, "Date*", :class => "bold" %><br />
+    <%= f.datetime_select :when %>
+  </div>
+  <div class="field">
+    <%= f.check_box :received %>
+    <%= f.label :received, "Process restock", :class => "bold" %>
+    <div class="small">
+      Marks whether you have received the new products yet,<br />
+      so we can add them to the inventory.  If you check this field,<br />
+      we will add the restock order quantity to your product inventory.
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </div>
+  <div class="actions">
+    <%= f.hidden_field :company_id %>
+    <%= f.hidden_field :product_id %>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if @pagetitle %>
+        <%= @pagetitle %> -
+      <% end -%>
+      <%= getAppName %>
+    </title>
+    <%= stylesheet_link_tag "app", :media => "all" %>
+    <%= stylesheet_link_tag "print", :media => "print" %>
+    <%= javascript_include_tag "jquery-1.6.1.min" %>
+    <%= javascript_include_tag "supersleight.plugin" %>
+    <%= javascript_include_tag "jquery_rails" %>
+    <%= javascript_include_tag "jquery.bgiframe.min" %>
+    <%= javascript_include_tag "jquery.centerinclient" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
+    <link rel="shortcut icon" href="/images/favico.ico" type="image/x-icon" />
+    <meta name="google-site-verification" content="lqoop8pqwD8hofNEpnkQgCss0pf6lL-3wB-vG4PJRfM" />
+    <meta name="google-site-verification" content="Mn0FRqfsGCQQTfjlp3IZFPlp9AVHjCHF3yP3wBYK0hA" />
+  </head>
+  <body>
+    <div id="header_cont">
+      <div id="header">
+        <div id="logo">
+          <a href="<%= getAppUrl %>"><img src="/images/logo.png" alt="<%= getAppName %>" id="img_logo"></a>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/menu' %>
+    <%= render 'layouts/usermenu' %>
+  
+    <div id="content">
+      <%- flash.each do |key, msg| -%>
+        <div class="<%= key %>">
+          <%= msg %>
+        </div>
+      <%- end -%>
+    
+      <%= yield %>
+    </div>
+  
+    <div class="break"><!-- i --></div>
+    
+    <div id="footer_cont">
+      <div id="footer">
+        <%= link_to getAppUrl, getAppUrl %>
+        <%= link_to "blog", "/blog" %>
+        <%= link_to "terms of service", "/p/tos" %>
+        <%= link_to "faq", "/p/faq" %>
+        <%= link_to "help", "/help" %>
+        <%= link_to "about us", "/p/about" %>
+      </div>
+    </div>
+    
+    <div id="loading">loading...</div>
+    <div id="remote"><!-- i --></div>
+    
+    <iframe name="ires" id="ires"></iframe>
+  </body>
+</html>

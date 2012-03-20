@@ -1,0 +1,22 @@
+<div class="breadcrumbs">
+  <%= link_to "My companies", "/companies" %> &raquo;
+  <%= link_to @company.name, @company %> &raquo;
+  <%= link_to @product.name, @product %>
+</div>
+
+<h1>
+  <%= image_tag("product_restock_48.png", :class => "vmiddle") %>
+  Restock orders for <%= @product.name %>
+</h1>
+
+<%= render "restocks/list" %>
+
+<br />
+
+<div class="button">
+  <%= link_to 'New Restock Order', "/restocks/new/#{@company.id}/#{@product.id}" %>
+</div>
+
+<br />
+
+<%= will_paginate @restocks %>

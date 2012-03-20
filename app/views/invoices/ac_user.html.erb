@@ -1,0 +1,5 @@
+<% if @users %>
+  <% for user in @users %>
+    <%= user.username %>|BRK|<%= user.id %>
+  <% end %>
+<% end %>

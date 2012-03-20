@@ -1,0 +1,80 @@
+<% if @customer.email != "" %>
+  <p>
+    <b>Email:</b>
+    <%= link_to @customer.email, "mailto:#{@customer.email}" %>
+  </p>
+<% end %>
+
+<% if @customer.account != "" %>
+  <p>
+    <b>Account:</b>
+    <%= @customer.account %>
+  </p>
+<% end %>
+
+<% if @customer.phone1 != "" %>
+  <p>
+    <b>Phone1:</b>
+    <%= @customer.phone1 %>
+  </p>
+<% end %>
+
+<% if @customer.phone2 != "" %>
+  <p>
+    <b>Phone2:</b>
+    <%= @customer.phone2 %>
+  </p>
+<% end %>
+
+<% if @customer.address1 != "" %>
+  <p>
+    <b>Address1:</b>
+    <%= @customer.address1 %>
+  </p>
+<% end %>
+
+<% if @customer.address2 != "" %>
+  <p>
+    <b>Address2:</b>
+    <%= @customer.address2 %>
+  </p>
+<% end %>
+
+<% if @customer.city != "" %>
+  <p>
+    <b>City:</b>
+    <%= @customer.city %>
+  </p>
+<% end %>
+
+<% if @customer.state != "" %>
+  <p>
+    <b>State:</b>
+    <%= @customer.state %>
+  </p>
+<% end %>
+
+<% if @customer.zip != "" %>
+  <p>
+    <b>Zip:</b>
+    <%= @customer.zip %>
+  </p>
+<% end %>
+
+<% if @customer.country != "" %>
+  <p>
+    <b>Country:</b>
+    <%= @customer.country %>
+  </p>
+<% end %>
+
+<% if @customer.comments != "" %>
+  <p>
+    <b>Comments:</b>
+    <%= @customer.comments %>
+  </p>
+<% end %>
+
+<p>
+  <strong><%= @customer.get_taxable %></strong>
+</p>

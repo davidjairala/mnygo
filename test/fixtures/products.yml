@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: MyString
+  name: MyString
+  category: MyString
+  supplier_id: 1
+  cost: 1.5
+  price: 1.5
+  tax1_name: MyString
+  tax1: 1.5
+  tax2_name: MyString
+  tax2: 1.5
+  tax3_name: MyString
+  tax3: 1.5
+  quantity: 1
+  reorder: 1
+  description: MyText
+  comments: MyText
+
+two:
+  code: MyString
+  name: MyString
+  category: MyString
+  supplier_id: 1
+  cost: 1.5
+  price: 1.5
+  tax1_name: MyString
+  tax1: 1.5
+  tax2_name: MyString
+  tax2: 1.5
+  tax3_name: MyString
+  tax3: 1.5
+  quantity: 1
+  reorder: 1
+  description: MyText
+  comments: MyText
