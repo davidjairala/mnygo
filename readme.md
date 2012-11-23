@@ -29,3 +29,39 @@ Or run it via [pow.cx](http://pow.cx/).
 # TO-DO
 
 There's still some work to do, basically polish everywhere, and all the literature (TOS, FAQ, Help, About Us, etc.), but that should be done pretty much on a per-project basis using the included **Page Admin**.
+
+# Screenshots
+
+## Frontpage
+
+![](http://i.imgur.com/4I3CW.png)
+
+---
+
+## Reports dashboard
+
+![](http://i.imgur.com/PUIDI.png)
+
+## Companies
+
+![](http://i.imgur.com/qkKIl.png)
+
+## Company dashboard
+
+![](http://i.imgur.com/Xa61N.png)
+
+---
+
+# Older screenshots
+
+## Product list
+
+![](http://i.imgur.com/avsov.png)
+
+## Plans
+
+![](http://i.imgur.com/rIEV5.png)
+
+## Product details
+
+![](http://i.imgur.com/xGLLp.png)
