@@ -7,6 +7,12 @@
 # Built on
 Ruby on Rails and MySQL.
 
+# Warning
+
+This project is very old, built on an old and probably insecure version of Rails, and written when I was learning Ruby/Rails, so it probably shouldn't be used in production anywhere and is provided more as a learning tool more than anything else.
+
+I'd love to update it to a modern version of Ruby and Rails, but not sure when I'll get some free time to do so.
+
 # Installation
 1) Clone the repository.
 
