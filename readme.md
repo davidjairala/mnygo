@@ -14,9 +14,9 @@ Ruby on Rails and MySQL.
 
     sudo bundle install
 
-3) create the database (database info in config/database.yml), setup permissions for the database user to access the database and do a quick:
+3) modify the database info in config/database.yml and do a quick:
 
-    bundle exec rake db:migrate
+    bundle exec rake db:create db:migrate db:seed
 
 That should take care of all tables and initial user (username: admin, password: admin), etc.
 

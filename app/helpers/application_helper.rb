@@ -404,7 +404,7 @@ module ApplicationHelper
   end
   
   # Format text for display.                                                                    
-  def format(text)
+  def format_text(text)
     sanitize(linebreaks(auto_link(text)))
   end
 

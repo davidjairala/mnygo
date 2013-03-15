@@ -6,6 +6,7 @@ gem 'rails', '3.0.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'activerecord-mysql2-adapter'
 
 # Added
 gem 'bluecloth'

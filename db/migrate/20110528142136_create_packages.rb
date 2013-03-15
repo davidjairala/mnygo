@@ -8,8 +8,6 @@ class CreatePackages < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    Package.create :title => 'Free', :slug => 'free', :price => 0, :description => 'Free Package', :companies => 1, :locations => 1, :users => 1
   end
 
   def self.down
